@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ShortNotesFlow } from "@/components/dashboard/ShortNotesFlow";
+import { HiddenModuleGuard } from "@/components/dashboard/HiddenModuleGuard";
 
 export const Route = createFileRoute("/_student/short-notes")({
   component: ShortNotesPage,
@@ -22,5 +23,9 @@ export const Route = createFileRoute("/_student/short-notes")({
 });
 
 function ShortNotesPage() {
-  return <ShortNotesFlow />;
+  return (
+    <HiddenModuleGuard moduleKey="short_notes">
+      <ShortNotesFlow />
+    </HiddenModuleGuard>
+  );
 }

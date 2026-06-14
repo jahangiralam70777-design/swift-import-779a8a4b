@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { QuestionBankFlow } from "@/components/dashboard/QuestionBankFlow";
+import { HiddenModuleGuard } from "@/components/dashboard/HiddenModuleGuard";
 
 export const Route = createFileRoute("/_student/qns-bank")({
   component: QnsBankPage,
@@ -22,5 +23,9 @@ export const Route = createFileRoute("/_student/qns-bank")({
 });
 
 function QnsBankPage() {
-  return <QuestionBankFlow />;
+  return (
+    <HiddenModuleGuard moduleKey="qns_bank">
+      <QuestionBankFlow />
+    </HiddenModuleGuard>
+  );
 }
