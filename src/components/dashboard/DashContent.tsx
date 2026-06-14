@@ -13,6 +13,7 @@ const AdvancedAnalyticsSection = lazy(() =>
   import("./AdvancedAnalyticsSection").then((m) => ({ default: m.AdvancedAnalyticsSection })),
 );
 import { CountUp } from "@/components/realtime/CountUp";
+import { stripAutoTitle } from "@/lib/strip-auto";
 import {
   ListChecks,
   Trophy,
