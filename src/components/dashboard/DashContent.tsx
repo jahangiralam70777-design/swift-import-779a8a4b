@@ -655,7 +655,7 @@ export function DashContent() {
                   className="glass group flex items-center justify-between rounded-xl p-3 transition-all hover:-translate-y-0.5 hover:shadow-glow"
                 >
                   <div className="min-w-0">
-                    <p className="font-display text-sm font-bold line-clamp-1">{r.title}</p>
+                    <p className="font-display text-sm font-bold line-clamp-1">{stripAutoTitle(r.title)}</p>
                     <p className="text-[10px] text-muted-foreground">
                       {r.total_questions} Qs · {Math.round((r.duration_seconds ?? 0) / 60)} min
                     </p>
