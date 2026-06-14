@@ -523,7 +523,7 @@ export function DashContent() {
                     Upcoming Mock
                   </p>
                   <h3 className="font-display mt-1 text-lg font-bold line-clamp-1">
-                    {upcoming?.title ?? "No mock scheduled"}
+                    {stripAutoTitle(upcoming?.title) || "No mock scheduled"}
                   </h3>
                 </div>
                 <Clock className="h-5 w-5 text-[var(--neon-purple)]" />
