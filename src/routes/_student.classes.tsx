@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { VideoClassesFlow } from "@/components/dashboard/VideoClassesFlow";
+import { HiddenModuleGuard } from "@/components/dashboard/HiddenModuleGuard";
 
 export const Route = createFileRoute("/_student/classes")({
   component: ClassesPage,
@@ -22,5 +23,9 @@ export const Route = createFileRoute("/_student/classes")({
 });
 
 function ClassesPage() {
-  return <VideoClassesFlow />;
+  return (
+    <HiddenModuleGuard moduleKey="classes">
+      <VideoClassesFlow />
+    </HiddenModuleGuard>
+  );
 }

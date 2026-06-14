@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FlashCardsFlow } from "@/components/dashboard/FlashCardsFlow";
+import { HiddenModuleGuard } from "@/components/dashboard/HiddenModuleGuard";
 
 export const Route = createFileRoute("/_student/flash-cards")({
   component: FlashCardsPage,
@@ -22,5 +23,9 @@ export const Route = createFileRoute("/_student/flash-cards")({
 });
 
 function FlashCardsPage() {
-  return <FlashCardsFlow />;
+  return (
+    <HiddenModuleGuard moduleKey="flash_cards">
+      <FlashCardsFlow />
+    </HiddenModuleGuard>
+  );
 }
