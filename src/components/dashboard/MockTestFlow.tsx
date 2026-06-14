@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { sanitizeOptionText } from "@/lib/sanitize-option";
+import { stripAutoTitle } from "@/lib/strip-auto";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { supabase } from "@/integrations/supabase/client";
@@ -438,7 +439,7 @@ function MockCard({ mock, delay, onStart }: { mock: MockRow; delay: number; onSt
         </div>
 
         <h3 className="font-display mt-3 line-clamp-2 text-lg font-bold tracking-tight">
-          {mock.title}
+          {stripAutoTitle(mock.title)}
         </h3>
         <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
           <span className="rounded-full bg-muted/60 px-2 py-0.5">{subjectName}</span>
@@ -741,7 +742,7 @@ function ExamStage({
             <Trophy className="h-5 w-5" />
           </div>
           <div>
-            <div className="font-display text-sm font-bold">{mock.title}</div>
+            <div className="font-display text-sm font-bold">{stripAutoTitle(mock.title)}</div>
             <div className="text-xs text-muted-foreground">
               {mock.subjects?.name ?? "General"} · {cap(mock.level)}
             </div>
@@ -1018,7 +1019,7 @@ function ResultStage({
               )}
             </h2>
             <p className="mt-1 text-sm text-muted-foreground">
-              {mock.title} · {mock.subjects?.name ?? "General"}
+              {stripAutoTitle(mock.title)} · {mock.subjects?.name ?? "General"}
             </p>
 
             <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">

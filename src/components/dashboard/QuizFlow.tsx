@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { sanitizeOptionText } from "@/lib/sanitize-option";
+import { stripAutoTitle, stripAutoDescription } from "@/lib/strip-auto";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { supabase } from "@/integrations/supabase/client";
@@ -527,9 +528,9 @@ export function QuizFlow() {
                           )}
                         </div>
                       </div>
-                      <h3 className="font-display mt-4 text-lg font-bold">{qz.title}</h3>
+                      <h3 className="font-display mt-4 text-lg font-bold">{stripAutoTitle(qz.title)}</h3>
                       <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">
-                        {qz.description ?? "Tap to start"}
+                        {stripAutoDescription(qz.description) ?? "Tap to start"}
                       </p>
                       <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
                         <span>
@@ -562,7 +563,7 @@ export function QuizFlow() {
                     >
                       <div className="min-w-0">
                         <p className="truncate font-medium">
-                          {(a.quiz_id && quizTitleById.get(a.quiz_id)) || "Quiz attempt"}
+                          {(a.quiz_id && stripAutoTitle(quizTitleById.get(a.quiz_id))) || "Quiz attempt"}
                         </p>
                         <p className="text-[11px] text-muted-foreground">
                           {new Date(a.completed_at ?? a.started_at).toLocaleString()} ·{" "}
@@ -597,7 +598,7 @@ export function QuizFlow() {
                   <p className="text-[10px] uppercase tracking-widest text-muted-foreground">
                     {level?.t}
                   </p>
-                  <h3 className="font-display text-lg font-bold">{meta?.title ?? "Loading…"}</h3>
+                  <h3 className="font-display text-lg font-bold">{stripAutoTitle(meta?.title) || "Loading…"}</h3>
                 </div>
                 <div className="flex items-center gap-2">
                   <div
